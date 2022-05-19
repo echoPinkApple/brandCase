@@ -1,4 +1,11 @@
 package com.test.mapper;
 
-public class BrandMapper {
+import com.test.pojo.Brand;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+public interface BrandMapper {
+
+    List<Brand> selectAll();
 }
