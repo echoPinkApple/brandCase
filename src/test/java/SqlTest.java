@@ -15,11 +15,11 @@ public class SqlTest {
     public void SqlSessionConnectionTest()
     {
         SqlSessionFactory sqlSessionFactory= SqlSessionFactoryUtils.getSqlSessionFactory();
-        BrandMapper mapper;
-        try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
-            mapper = sqlSession.getMapper(BrandMapper.class);
-        }
+       
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        BrandMapper  mapper = sqlSession.getMapper(BrandMapper.class);
         List<Brand> brands=mapper.selectAll();
+        sqlSession.close();
         System.out.println(brands);
     }
     @Test
