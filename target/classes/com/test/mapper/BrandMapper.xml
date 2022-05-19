@@ -19,4 +19,24 @@
     <select id="selectAll" resultMap="brandMap">
         select id,brand_name,company_name,ordered,description,status from tb_brand;
     </select>
+    <select id="selectByCondition" resultMap="brandMap">
+        select id,
+               brand_name,
+               company_name,
+               ordered,
+               description,
+               status
+        from tb_brand
+        <where>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+            <if test="companyName!='' and companyName!=null">
+                and company_name like concat('%',#{companyName},'%')
+            </if>
+            <if test="brandName!=null and brandName!=''">
+                and brand_name like concat('%',#{brandName},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

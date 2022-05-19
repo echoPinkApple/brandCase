@@ -29,4 +29,16 @@ public class SqlTest {
         List<Brand> brands= service.selectAll();
         System.out.println(brands);
     }
+
+    @Test
+    public void SelectByConditionTest()
+    {
+        Brand brand=new Brand(1,"小米","小米","10","test",1);
+        SqlSessionFactory sessionFactory=SqlSessionFactoryUtils.getSqlSessionFactory();
+        SqlSession session=sessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        List<Brand> lists=mapper.selectByCondition(brand);
+        session.close();
+        System.out.println(lists);
+    }
 }

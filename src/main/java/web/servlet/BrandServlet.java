@@ -17,7 +17,17 @@ public class BrandServlet extends BaseServlet {
     public void  selectAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<Brand> brands=brandService.selectAll();
         String jsonString= JSON.toJSONString(brands);
+        System.out.println(jsonString);
         resp.setContentType("text/json;charset=utf-8");
         resp.getWriter().write(jsonString);
+    }
+    public  void selectByCondition(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String brandStr=request.getReader().readLine();
+        //System.out.println(brandStr);
+        Brand brand=JSON.parseObject(brandStr,Brand.class);
+        List<Brand> brands=brandService.selectByCondition(brand);
+        String resultBrandsString= JSON.toJSONString(brands);
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(resultBrandsString);
     }
 }

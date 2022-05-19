@@ -67,4 +67,17 @@ public class Brand {
                 ", status=" + status +
                 '}';
     }
+
+    public Brand(int id, String brandName, String companyName, String ordered, String description, int status) {
+        this.id = id;
+        this.brandName = brandName;
+        this.companyName = companyName;
+        this.ordered = ordered;
+        this.description = description;
+        this.status = status;
+    }
+    public Brand()
+    {
+
+    }
 }

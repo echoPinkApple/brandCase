@@ -23,4 +23,5 @@
         <!--扫描mapper-->
         <package name="com.test.mapper"/>
     </mappers>
+
 </configuration>

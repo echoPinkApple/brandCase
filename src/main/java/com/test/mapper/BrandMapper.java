@@ -8,4 +8,5 @@ import java.util.List;
 public interface BrandMapper {
 
     List<Brand> selectAll();
+    List<Brand> selectByCondition(Brand brand);
 }

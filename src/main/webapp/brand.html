@@ -186,14 +186,14 @@
 
             // 查询分页数据
             selectAll(){
-               /* var _this = this;
+                var _this = this;
 
                 axios({
                     method:"get",
-                    url:"http://localhost:8080/brand-case/brand/selectAll"
+                    url:"http://localhost:8080/brandCase/brand/selectAll"
                 }).then(function (resp) {
                     _this.tableData = resp.data;
-                })*/
+                })
 
 /*
                 var _this = this;
@@ -212,16 +212,16 @@
 
 
 
-                axios({
-                    method:"post",
-                    url:"http://localhost:8080/brand-case/brand/selectByPageAndCondition?currentPage="+this.currentPage+"&pageSize="+this.pageSize,
-                    data:this.brand
-                }).then(resp =>{
-                    //设置表格数据
-                    this.tableData = resp.data.rows; // {rows:[],totalCount:100}
-                    //设置总记录数
-                    this.totalCount = resp.data.totalCount;
-                })
+                // axios({
+                //     method:"post",
+                //     url:"http://localhost:8080/brandCase/brand/selectByPageAndCondition?currentPage="+this.currentPage+"&pageSize="+this.pageSize,
+                //     data:this.brand
+                // }).then(resp =>{
+                //     //设置表格数据
+                //     this.tableData = resp.data.rows; // {rows:[],totalCount:100}
+                //     //设置总记录数
+                //     this.totalCount = resp.data.totalCount;
+                // })
 
 
             },
