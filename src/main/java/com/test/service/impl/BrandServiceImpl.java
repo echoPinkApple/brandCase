@@ -9,12 +9,14 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class BrandServiceImpl implements BrandService {
+public class BrandServiceImpl implements BrandService
+{
 
     SqlSessionFactory sqlSessionFactory= SqlSessionFactoryUtils.getSqlSessionFactory();
 
     @Override
-    public List<Brand> selectAll() {
+    public List<Brand> selectAll()
+    {
         SqlSession session=sqlSessionFactory.openSession();
         BrandMapper mapper=session.getMapper(BrandMapper.class);
         List<Brand> brands=mapper.selectAll();
@@ -30,5 +32,25 @@ public class BrandServiceImpl implements BrandService {
         List<Brand> brands=mapper.selectByCondition(brand);
         session.close();
         return brands;
+    }
+    @Override
+    public int addBrand(Brand brand)
+    {
+        SqlSession session=sqlSessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        int flag=  mapper.addBrand(brand);
+        session.commit();
+        session.close();
+        return flag;
+    }
+
+    @Override
+    public List<?> selectOne(Brand brand)
+    {
+        SqlSession session=sqlSessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        List<Brand> brand_return= mapper.selectOne(brand);
+        session.close();
+        return  brand_return;
     }
 }

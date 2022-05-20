@@ -15,6 +15,11 @@
         <result property="status" column="status" />
 
     </resultMap>
+    <insert id="addBrand" useGeneratedKeys="true" keyProperty="id" >
+        insert into tb_brand(id,brand_name,company_name,ordered,description,status)
+        values (null,#{brandName},#{companyName},#{ordered},#{description},#{status})
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">select last_insert_id()</selectKey>
+    </insert>
 
     <select id="selectAll" resultMap="brandMap">
         select id,brand_name,company_name,ordered,description,status from tb_brand;
@@ -37,6 +42,30 @@
             <if test="brandName!=null and brandName!=''">
                 and brand_name like concat('%',#{brandName},'%')
             </if>
+        </where>
+    </select>
+    <select id="selectOne" resultMap="brandMap">
+        select id,
+               brand_name,
+               company_name,
+               ordered,
+               description,
+               status
+        from tb_brand
+        <where>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+            <if test="companyName!='' and companyName!=null">
+                and company_name = #{companyName}
+            </if>
+            <if test="brandName!=null and brandName!=''">
+                and brand_name = #{brandName}
+            </if>
+            <if test="description!=null and description!=''">
+                and description =#{description}
+            </if>
+
         </where>
     </select>
 </mapper>

@@ -76,8 +76,4 @@ public class Brand {
         this.description = description;
         this.status = status;
     }
-    public Brand()
-    {
-
-    }
 }

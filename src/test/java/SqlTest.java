@@ -41,4 +41,31 @@ public class SqlTest {
         session.close();
         System.out.println(lists);
     }
+    @Test
+    public void addBrand()
+    {
+        Brand brand=new Brand(1 ,"小米","小米科技","10","mapper addBrand test",1);
+        SqlSessionFactory sessionFactory=SqlSessionFactoryUtils.getSqlSessionFactory();
+        SqlSession session=sessionFactory.openSession();
+        BrandMapper mapper= session.getMapper(BrandMapper.class);
+
+        int flag=mapper.addBrand(brand);
+        session.commit();
+        System.out.println(flag);
+        session.close();
+    }
+
+    @Test
+    public void selectOneTest()
+    {
+        Brand brand=new Brand(1 ,"小米","小米科技","10","mapper addBrand test",1);
+        SqlSessionFactory sessionFactory=SqlSessionFactoryUtils.getSqlSessionFactory();
+        SqlSession session=sessionFactory.openSession();
+        BrandMapper mapper= session.getMapper(BrandMapper.class);
+
+        List<Brand> brand1=mapper.selectOne(brand);
+        //session.commit();
+        System.out.println(brand1);
+        session.close();
+    }
 }
