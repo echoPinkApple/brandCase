@@ -68,4 +68,17 @@
 
         </where>
     </select>
+
+    <select id="selectByPage" resultMap="brandMap">
+        select 
+            id,
+            brand_name,
+            company_name,
+            ordered,
+            description,
+            status
+        from tb_brand
+        limit #{begin},#{size}
+    </select>
+
 </mapper>

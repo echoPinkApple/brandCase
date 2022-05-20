@@ -68,4 +68,25 @@ public class SqlTest {
         System.out.println(brand1);
         session.close();
     }
+
+    @Test
+    public void selectTotalCountTest()
+    {
+        SqlSessionFactory sessionFactory=SqlSessionFactoryUtils.getSqlSessionFactory();
+        SqlSession session=sessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        int count=mapper.selectTotalCount();
+        session.close();
+        System.out.println(count);
+    }
+    @Test
+    public void selectByPageTest()
+    {
+        SqlSessionFactory sessionFactory=SqlSessionFactoryUtils.getSqlSessionFactory();
+        SqlSession session=sessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        List<Brand> brands= mapper.selectByPage(10, 5);
+        session.close();
+        System.out.println(brands);
+    }
 }

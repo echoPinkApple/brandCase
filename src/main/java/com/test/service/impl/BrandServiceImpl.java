@@ -2,6 +2,7 @@ package com.test.service.impl;
 
 import com.test.mapper.BrandMapper;
 import com.test.pojo.Brand;
+import com.test.pojo.PageBean;
 import com.test.service.BrandService;
 import com.test.utils.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -45,12 +46,26 @@ public class BrandServiceImpl implements BrandService
     }
 
     @Override
-    public List<?> selectOne(Brand brand)
+    public List<Brand> selectOne(Brand brand)
     {
         SqlSession session=sqlSessionFactory.openSession();
         BrandMapper mapper=session.getMapper(BrandMapper.class);
         List<Brand> brand_return= mapper.selectOne(brand);
         session.close();
         return  brand_return;
+    }
+    @Override
+    public PageBean<Brand> selectByPage(int currentPage,int pageSize)
+    {
+        SqlSession session=sqlSessionFactory.openSession();
+        BrandMapper mapper=session.getMapper(BrandMapper.class);
+        int begin=(currentPage-1)*pageSize;
+        int size=pageSize;
+        List<Brand> brands= mapper.selectByPage(begin, size);
+        int totalCount=mapper.selectTotalCount();
+        PageBean<Brand> pageBean=new PageBean<>();
+        pageBean.settotalCount(totalCount);
+        pageBean.setRows(brands);
+        return pageBean;
     }
 }

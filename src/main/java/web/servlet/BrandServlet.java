@@ -2,6 +2,7 @@ package web.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.test.pojo.Brand;
+import com.test.pojo.PageBean;
 import com.test.service.BrandService;
 import com.test.service.impl.BrandServiceImpl;
 
@@ -62,5 +63,17 @@ public class BrandServlet extends BaseServlet
         {
             response.getWriter().write("unsuccessful");
         }
+    }
+
+    public void selectByPage(HttpServletRequest request,HttpServletResponse response) throws IOException
+    {
+        String _pageSize=request.getParameter("pageSize");
+        String _currentPage=request.getParameter("currentPage");
+        int pageSize=Integer.parseInt(_pageSize);
+        int currentPage=Integer.parseInt(_currentPage);
+        PageBean<Brand> pageBean= brandService.selectByPage(currentPage, pageSize);
+        String pageBeanString=JSON.toJSONString(pageBean);
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(pageBeanString);
     }
 }
